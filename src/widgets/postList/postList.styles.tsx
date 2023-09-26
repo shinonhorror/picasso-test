@@ -3,43 +3,25 @@ import { styled } from 'styled-components';
 export const List = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 600px;
+  width: 800px;
+  height: 80vh;
   margin: 20px;
   padding: 10px;
-`;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
 
-export const Post = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  width: 100%;
-  padding: 20px 15px;
-  background-color: #f8fafb;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05);
-`;
+  &::-webkit-scrollbar {
+    width: 0.4375rem;
+  }
 
-export const PostHeader = styled.div`
-  display: flex;
-  gap: 10px;
-`;
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
 
-export const PostId = styled.p`
-  color: #878787;
-  font-size: 16px;
-  font-weight: 500;
-`;
-
-export const PostTitle = styled.h2`
-  font-size: 16px;
-  font-weight: 500;
-`;
-
-export const PostContent = styled.p`
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  &::-webkit-scrollbar-thumb {
+    background: #878787;
+    border-radius: 1rem;
+    border: 0.063rem solid #fff;
+  }
 `;

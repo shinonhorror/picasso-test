@@ -2,12 +2,14 @@ import { styled } from 'styled-components';
 import { Button, Description } from '../../../../shared';
 
 export const Post = styled.div`
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  width: 100%;
-  max-height: 300px;
+  justify-content: space-between;
+  width: 95%;
+  height: 200px;
   padding: 20px 15px;
   background-color: #f8fafb;
   border-radius: 10px;

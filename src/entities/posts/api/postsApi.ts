@@ -11,21 +11,6 @@ export const postsApi = baseApi
     endpoints: (builder) => ({
       fetchPosts: builder.query<PostsResponse[], number>({
         query: (start = 1) => `${POSTS_API_PATH}?_page=${start}&_limit=10`,
-        serializeQueryArgs: ({ endpointName }) => {
-          return endpointName;
-        },
-        forceRefetch({ currentArg, previousArg }) {
-          return currentArg !== previousArg;
-        },
-        merge: (
-          currentCacheData: PostsResponse[],
-          responseData: PostsResponse[],
-          { arg: start }
-        ) => {
-          currentCacheData.push(...responseData);
-          return currentCacheData;
-        },
-        keepUnusedDataFor: Infinity,
       }),
       fetchSinglePosts: builder.query<PostsResponse, string>({
         query: (id: string) => ({

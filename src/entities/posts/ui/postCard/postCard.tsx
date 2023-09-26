@@ -10,11 +10,11 @@ import {
 import { PostCardProps } from './types';
 import { useNavigate } from 'react-router-dom';
 
-export const PostCard: FC<PostCardProps> = ({ post }) => {
+export const PostCard: FC<PostCardProps> = ({ post, offset }) => {
   const navigate = useNavigate();
 
   return (
-    <Post>
+    <Post style={{ transform: `translateY(${offset}px)` }}>
       <PostHeader>
         <PostId>#{post.id}</PostId>
         <PostTitle>{post.title}</PostTitle>

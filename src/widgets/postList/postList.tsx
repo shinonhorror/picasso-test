@@ -1,43 +1,44 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { List } from './postList.styles';
-import { Loader } from '../../shared';
+import { useAppSelector, useVirtualize } from '../../shared';
 import { useFetchPostsQuery } from '../../entities/posts/api/postsApi';
 import { PostCard } from '../../entities/posts';
 
 export const PostList: FC = () => {
-  const [start, setStart] = useState(1);
+  const posts = useAppSelector((state: RootState) => state.posts.list);
+  const scrollElementRef = useRef<HTMLDivElement>(null);
+  const [page, setPage] = useState(1);
+  useFetchPostsQuery(page);
 
-  const { data, isLoading, isFetching } = useFetchPostsQuery(start);
+  const { virtualItems, totalHeight, isScrolling, startIndex, endIndex } =
+    useVirtualize({
+      itemHeight: 220,
+      itemsCount: posts.length,
+      overscan: 2,
+      listHeight: 1000,
+      getScrollElement: useCallback(() => scrollElementRef.current, []),
+    });
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY < 250 && start > 1) {
-        setStart((prevStartIndex) => prevStartIndex - 1);
-      } else if (
-        window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-        !isFetching
-      ) {
-        setStart((prevStartIndex) => prevStartIndex + 1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [start, isFetching]);
+    if (endIndex === page * 10 - 2) {
+      setPage((currentPage) => currentPage + 1);
+    }
+  }, [endIndex]);
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <List>
-          {data?.map((post) => {
-            return <PostCard post={post} key={`${post.userId}${post.id}`} />;
-          })}
-        </List>
-      )}
-    </>
+    <List ref={scrollElementRef}>
+      <div style={{ height: totalHeight }}>
+        {virtualItems.map((virtualItem) => {
+          const post = posts[virtualItem.index]!;
+          return (
+            <PostCard
+              key={post.id}
+              post={post}
+              offset={virtualItem.offsetTop}
+            />
+          );
+        })}
+      </div>
+    </List>
   );
 };
