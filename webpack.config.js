@@ -12,12 +12,12 @@ module.exports = {
     paths: PATHS,
   },
   entry: {
-    index: path.join(PATHS.src, '/app.tsx'),
+    index: path.join(PATHS.src, './index.tsx'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: path.join(PATHS.src, '/index.html'),
+      template: path.join('index.html'),
     }),
     new Dotenv(),
   ],
