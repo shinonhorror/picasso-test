@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { MAIN_ROUTES } from './routes/routes';
+
 import { Route, Routes } from 'react-router-dom';
 import { withProviders } from './providers';
 
