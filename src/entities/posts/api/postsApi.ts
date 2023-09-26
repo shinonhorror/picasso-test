@@ -1,7 +1,7 @@
 import { baseApi } from '../../../shared';
 import { HTTP_METHOD } from '../../../shared/constants/variables';
 
-import { PostRequest, PostsResponse } from './types';
+import { PostsResponse } from './types';
 
 const POSTS_API_PATH = '/posts';
 

@@ -1,6 +1,7 @@
+/* eslint-disable  @typescript-eslint/no-shadow */
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
-interface useVirtualizeProps {
+interface UseVirtualizeProps {
   itemsCount: number;
   itemHeight: number;
   listHeight: number;
@@ -9,7 +10,7 @@ interface useVirtualizeProps {
   getScrollElement: () => HTMLElement | null;
 }
 
-export const useVirtualize = (props: useVirtualizeProps) => {
+export const useVirtualize = (props: UseVirtualizeProps) => {
   const {
     itemHeight,
     itemsCount,
