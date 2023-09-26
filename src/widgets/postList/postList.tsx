@@ -10,7 +10,7 @@ export const PostList: FC = () => {
   const [page, setPage] = useState(1);
   useFetchPostsQuery(page);
 
-  const { virtualItems, totalHeight, isScrolling, startIndex, endIndex } =
+  const { virtualItems, totalHeight, endIndex } =
     useVirtualize({
       itemHeight: 220,
       itemsCount: posts.length,

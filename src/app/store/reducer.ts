@@ -1,11 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { CombinedState } from '@reduxjs/toolkit/dist/query/core/apiState';
 import { baseApi } from '../../shared';
-import { postsApi } from '../../entities';
-import {
-  PostsState,
-  postsReducer,
-} from '../../entities/posts/slices/postsSlice';
+import { PostsState, postsApi, postsReducer } from '../../entities';
+
 
 export interface IReducer {
   baseApi: CombinedState<Record<never, never>, 'USER_INFO', 'baseApi'>;
