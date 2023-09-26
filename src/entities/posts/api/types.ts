@@ -4,7 +4,3 @@ export type PostsResponse = {
   title: string;
   body: string;
 };
-
-export type PostRequest = {
-  start: number;
-};

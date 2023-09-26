@@ -3,7 +3,7 @@ import { PAGES, Routes } from './routes.types';
 import { Navigate } from 'react-router-dom';
 import { PostPage, PostsPage } from '../../pages';
 
-export const ERROR_ROUTES: Routes = [
+export const MAIN_ROUTES: Routes = [
   {
     path: PAGES.ALL,
     main: () => <Navigate to="/" replace />,

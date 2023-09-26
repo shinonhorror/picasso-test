@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchSinglePostsQuery } from '../../entities';
 import { skipToken } from '@reduxjs/toolkit/dist/query';

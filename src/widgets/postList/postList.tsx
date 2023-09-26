@@ -10,14 +10,13 @@ export const PostList: FC = () => {
   const [page, setPage] = useState(1);
   useFetchPostsQuery(page);
 
-  const { virtualItems, totalHeight, isScrolling, startIndex, endIndex } =
-    useVirtualize({
-      itemHeight: 220,
-      itemsCount: posts.length,
-      overscan: 2,
-      listHeight: 1000,
-      getScrollElement: useCallback(() => scrollElementRef.current, []),
-    });
+  const { virtualItems, totalHeight, endIndex } = useVirtualize({
+    itemHeight: 220,
+    itemsCount: posts.length,
+    overscan: 2,
+    listHeight: 1000,
+    getScrollElement: useCallback(() => scrollElementRef.current, []),
+  });
 
   useEffect(() => {
     if (endIndex === page * 10 - 2) {
